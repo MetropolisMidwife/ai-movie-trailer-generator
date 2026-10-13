@@ -1,0 +1,69 @@
+# ai-movie-trailer-generator — default project config
+# Copy to config/secrets.toml for API keys (gitignored).
+
+[app]
+name = "ai-movie-trailer-generator"
+version = "0.4.2"
+log_level = "INFO"
+cache_dir = "models/cache"
+render_dir = "renders"
+project_dir = "trailer_projects"
+
+[pipeline]
+# Stage order is fixed; disable stages by setting enabled = false.
+stages = ["ingest", "analyze", "score", "cut", "voiceover", "caption", "mux"]
+
+[pipeline.ingest]
+enabled = true
+media_glob = "**/*.{mp4,mov,mkv,wav,mp3}"
+proxy_height = 540
+
+[pipeline.analyze]
+enabled = true
+shot_detector = "content"   # content | adaptive | hash
+min_shot_seconds = 0.6
+emotion_model = "local:distilroberta-emotion"
+
+[pipeline.score]
+enabled = true
+music_model = "local:musicgen-small"
+target_loudness_lufs = -14.0
+
+[pipeline.cut]
+enabled = true
+max_duration_seconds = 150
+min_duration_seconds = 60
+beat_sync = true
+template = "three_act_teaser"
+
+[pipeline.voiceover]
+enabled = true
+provider = "openai"          # openai | anthropic | local
+voice = "onyx"
+pace_wpm = 155
+
+[pipeline.caption]
+enabled = true
+burn_in = true
+font = "Inter SemiBold"
+position = "lower_third"
+
+[pipeline.mux]
+enabled = true
+container = "mp4"
+codec_video = "h264_nvenc"
+codec_audio = "aac"
+crf = 19
+
+[render]
+backend = "auto"             # auto | cuda | directml | cpu
+workers = 4
+ffmpeg_bin = "ffmpeg"
+
+[models]
+# Local weights live under models/weights/, never committed.
+weights_dir = "models/weights"
+device = "auto"
+
+[telemetry]
+enabled = false
