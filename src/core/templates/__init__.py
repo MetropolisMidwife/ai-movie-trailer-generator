@@ -1,0 +1,1 @@
+"""Trailer structural templates (three-act teaser, cold-open, montage)."""
