@@ -1,0 +1,1 @@
+"""Core engine: pipeline orchestration, project model, trailer templates."""
