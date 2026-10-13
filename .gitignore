@@ -1,0 +1,52 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Virtualenvs
+.venv/
+venv/
+env/
+ENV/
+
+# Test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Model + media caches (large, regenerable)
+models/cache/
+models/weights/*.safetensors
+models/weights/*.ckpt
+renders/
+tmp/
+*.mp4
+*.mkv
+*.wav
+*.m4a
+
+# Trailer project scratch
+trailer_projects/*/scratch/
+trailer_projects/*/proxy/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+config/secrets.toml
